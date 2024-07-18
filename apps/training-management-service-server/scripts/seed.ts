@@ -25,19 +25,25 @@ async function seed(bcryptSalt: Salt) {
 
   const client = new PrismaClient();
 
+  client.$connect();
+
   const data = {
     username: "admin",
     password: await hash("admin", bcryptSalt),
-    roles: ["user"],
+    roles: ["admin"],
   };
 
-  await client.user.upsert({
-    where: {
-      username: data.username,
-    },
+  // await client.user.upsert({
+  //   where: {
+  //     username: data.username,
+  //   },
 
-    update: {},
-    create: data,
+  //   update: {},
+  //   create: data,
+  // });
+
+  await client.user.create({
+    data,
   });
 
   void client.$disconnect();

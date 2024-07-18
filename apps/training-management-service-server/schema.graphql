@@ -1,0 +1,332 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input Credentials {
+  password: String!
+  username: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+input DateTimeNullableFilter {
+  equals: DateTime
+  gt: DateTime
+  gte: DateTime
+  in: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  not: DateTime
+  notIn: [DateTime!]
+}
+
+enum EnumFileFileType {
+  Option_1
+}
+
+type File {
+  createdAt: DateTime!
+  fileType: EnumFileFileType
+  filename: String
+  id: String!
+  updatedAt: DateTime!
+  user: User
+}
+
+input FileCreateInput {
+  fileType: EnumFileFileType
+  filename: String
+  user: UserWhereUniqueInput
+}
+
+input FileCreateNestedManyWithoutUsersInput {
+  connect: [FileWhereUniqueInput!]
+}
+
+input FileListRelationFilter {
+  every: FileWhereInput
+  none: FileWhereInput
+  some: FileWhereInput
+}
+
+input FileOrderByInput {
+  createdAt: SortOrder
+  fileType: SortOrder
+  filename: SortOrder
+  id: SortOrder
+  updatedAt: SortOrder
+  userId: SortOrder
+}
+
+input FileUpdateInput {
+  fileType: EnumFileFileType
+  filename: String
+  user: UserWhereUniqueInput
+}
+
+input FileUpdateManyWithoutUsersInput {
+  connect: [FileWhereUniqueInput!]
+  disconnect: [FileWhereUniqueInput!]
+  set: [FileWhereUniqueInput!]
+}
+
+input FileWhereInput {
+  fileType: EnumFileFileType
+  filename: StringNullableFilter
+  id: StringFilter
+  user: UserWhereUniqueInput
+}
+
+input FileWhereUniqueInput {
+  id: String!
+}
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+
+type MetaQueryPayload {
+  count: Float!
+}
+
+type Mutation {
+  createFile(data: FileCreateInput!): File!
+  createPhoto(data: PhotoCreateInput!): Photo!
+  createSchedule(data: ScheduleCreateInput!): Schedule!
+  createUser(data: UserCreateInput!): User!
+  deleteFile(where: FileWhereUniqueInput!): File!
+  deletePhoto(where: PhotoWhereUniqueInput!): Photo!
+  deleteSchedule(where: ScheduleWhereUniqueInput!): Schedule!
+  deleteUser(where: UserWhereUniqueInput!): User!
+  login(credentials: Credentials!): UserInfo!
+  updateFile(data: FileUpdateInput!, where: FileWhereUniqueInput!): File!
+  updatePhoto(data: PhotoUpdateInput!, where: PhotoWhereUniqueInput!): Photo!
+  updateSchedule(data: ScheduleUpdateInput!, where: ScheduleWhereUniqueInput!): Schedule!
+  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User!
+}
+
+type Photo {
+  createdAt: DateTime!
+  description: String
+  id: String!
+  updatedAt: DateTime!
+  url: String
+  user: User
+}
+
+input PhotoCreateInput {
+  description: String
+  url: String
+  user: UserWhereUniqueInput
+}
+
+input PhotoCreateNestedManyWithoutUsersInput {
+  connect: [PhotoWhereUniqueInput!]
+}
+
+input PhotoListRelationFilter {
+  every: PhotoWhereInput
+  none: PhotoWhereInput
+  some: PhotoWhereInput
+}
+
+input PhotoOrderByInput {
+  createdAt: SortOrder
+  description: SortOrder
+  id: SortOrder
+  updatedAt: SortOrder
+  url: SortOrder
+  userId: SortOrder
+}
+
+input PhotoUpdateInput {
+  description: String
+  url: String
+  user: UserWhereUniqueInput
+}
+
+input PhotoUpdateManyWithoutUsersInput {
+  connect: [PhotoWhereUniqueInput!]
+  disconnect: [PhotoWhereUniqueInput!]
+  set: [PhotoWhereUniqueInput!]
+}
+
+input PhotoWhereInput {
+  description: StringNullableFilter
+  id: StringFilter
+  url: StringNullableFilter
+  user: UserWhereUniqueInput
+}
+
+input PhotoWhereUniqueInput {
+  id: String!
+}
+
+type Query {
+  _filesMeta(where: FileWhereInput): MetaQueryPayload!
+  _photosMeta(where: PhotoWhereInput): MetaQueryPayload!
+  _schedulesMeta(where: ScheduleWhereInput): MetaQueryPayload!
+  _usersMeta(where: UserWhereInput): MetaQueryPayload!
+  file(where: FileWhereUniqueInput!): File
+  files(orderBy: [FileOrderByInput!], skip: Float, take: Float, where: FileWhereInput): [File!]!
+  photo(where: PhotoWhereUniqueInput!): Photo
+  photos(orderBy: [PhotoOrderByInput!], skip: Float, take: Float, where: PhotoWhereInput): [Photo!]!
+  schedule(where: ScheduleWhereUniqueInput!): Schedule
+  schedules(orderBy: [ScheduleOrderByInput!], skip: Float, take: Float, where: ScheduleWhereInput): [Schedule!]!
+  user(where: UserWhereUniqueInput!): User
+  userInfo: UserInfo!
+  users(orderBy: [UserOrderByInput!], skip: Float, take: Float, where: UserWhereInput): [User!]!
+}
+
+enum QueryMode {
+  Default
+  Insensitive
+}
+
+type Schedule {
+  createdAt: DateTime!
+  date: DateTime
+  description: String
+  id: String!
+  title: String
+  updatedAt: DateTime!
+}
+
+input ScheduleCreateInput {
+  date: DateTime
+  description: String
+  title: String
+}
+
+input ScheduleOrderByInput {
+  createdAt: SortOrder
+  date: SortOrder
+  description: SortOrder
+  id: SortOrder
+  title: SortOrder
+  updatedAt: SortOrder
+}
+
+input ScheduleUpdateInput {
+  date: DateTime
+  description: String
+  title: String
+}
+
+input ScheduleWhereInput {
+  date: DateTimeNullableFilter
+  description: StringNullableFilter
+  id: StringFilter
+  title: StringNullableFilter
+}
+
+input ScheduleWhereUniqueInput {
+  id: String!
+}
+
+enum SortOrder {
+  Asc
+  Desc
+}
+
+input StringFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  mode: QueryMode
+  not: String
+  notIn: [String!]
+  startsWith: String
+}
+
+input StringNullableFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  mode: QueryMode
+  not: String
+  notIn: [String!]
+  startsWith: String
+}
+
+type User {
+  createdAt: DateTime!
+  email: String
+  files(orderBy: [FileOrderByInput!], skip: Float, take: Float, where: FileWhereInput): [File!]!
+  firstName: String
+  id: String!
+  lastName: String
+  photos(orderBy: [PhotoOrderByInput!], skip: Float, take: Float, where: PhotoWhereInput): [Photo!]!
+  roles: JSON!
+  updatedAt: DateTime!
+  username: String!
+}
+
+input UserCreateInput {
+  email: String
+  files: FileCreateNestedManyWithoutUsersInput
+  firstName: String
+  lastName: String
+  password: String!
+  photos: PhotoCreateNestedManyWithoutUsersInput
+  roles: JSON!
+  username: String!
+}
+
+type UserInfo {
+  accessToken: String
+  id: String!
+  roles: [String!]!
+  username: String!
+}
+
+input UserOrderByInput {
+  createdAt: SortOrder
+  email: SortOrder
+  firstName: SortOrder
+  id: SortOrder
+  lastName: SortOrder
+  password: SortOrder
+  roles: SortOrder
+  updatedAt: SortOrder
+  username: SortOrder
+}
+
+input UserUpdateInput {
+  email: String
+  files: FileUpdateManyWithoutUsersInput
+  firstName: String
+  lastName: String
+  password: String
+  photos: PhotoUpdateManyWithoutUsersInput
+  roles: JSON
+  username: String
+}
+
+input UserWhereInput {
+  email: StringNullableFilter
+  files: FileListRelationFilter
+  firstName: StringNullableFilter
+  id: StringFilter
+  lastName: StringNullableFilter
+  photos: PhotoListRelationFilter
+  username: StringFilter
+}
+
+input UserWhereUniqueInput {
+  id: String!
+}
